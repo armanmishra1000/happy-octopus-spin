@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { DecorativeStars } from "@/components/decorative-stars";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -327,6 +328,7 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="section-padding bg-white">
           <div className="container mx-auto px-4 lg:px-8">
+            <DecorativeStars />
             <h2 className="text-center mb-12 text-gray-900">
               We love hearing from you . . .
             </h2>
