@@ -161,7 +161,7 @@ export default function Home() {
         {/* Discover What's New Section */}
         <section className="section-padding bg-white">
           <div className="container mx-auto px-4 lg:px-8">
-            <h2 className="text-center mb-12 text-gray-900">Discover What's New</h2>
+            <h2 className="text-center mb-12 text-gray-900">Discover What&apos;s New</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {/* Card 1 */}
               <Link href="/collections/latest" className="group relative overflow-hidden aspect-[3/4] block">
@@ -327,7 +327,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-base font-semibold mb-2 text-gray-900">Essential Care Tips for Kids Clothing</h3>
                 <p className="text-xs text-gray-600 mb-3">
-                  Learn how to keep your children's favorite outfits looking fresh and new with our expert care guide.
+                  Learn how to keep your children&apos;s favorite outfits looking fresh and new with our expert care guide.
                 </p>
                 <span className="inline-block text-xs font-medium text-gray-900 border-b border-gray-900 pb-1 group-hover:border-transparent transition-colors">
                   Read More →
@@ -344,9 +344,9 @@ export default function Home() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <h3 className="text-base font-semibold mb-2 text-gray-900">This Season's Must-Have Pieces</h3>
+                <h3 className="text-base font-semibold mb-2 text-gray-900">This Season&apos;s Must-Have Pieces</h3>
                 <p className="text-xs text-gray-600 mb-3">
-                  From cozy layers to playful accessories, explore the trending styles that every child's wardrobe needs.
+                  From cozy layers to playful accessories, explore the trending styles that every child&apos;s wardrobe needs.
                 </p>
                 <span className="inline-block text-xs font-medium text-gray-900 border-b border-gray-900 pb-1 group-hover:border-transparent transition-colors">
                   Read More →
@@ -396,7 +396,7 @@ export default function Home() {
               <div className="text-center">
                 <blockquote className="mb-6">
                   <p className="text-xs text-gray-700 italic leading-relaxed mb-4">
-                    &ldquo;I'd like to take this opportunity to say what amazing customer service you have. I will be recommending Askkart to friends and family and will certainly carry on purchasing from you.&rdquo;
+                    &ldquo;I&apos;d like to take this opportunity to say what amazing customer service you have. I will be recommending Askkart to friends and family and will certainly carry on purchasing from you.&rdquo;
                   </p>
                 </blockquote>
                 <footer>
