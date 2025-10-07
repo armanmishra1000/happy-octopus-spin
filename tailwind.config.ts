@@ -9,7 +9,15 @@ export default {
   ],
   theme: {
   	extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
+        serif: ['var(--font-playfair-display)'],
+      },
   		colors: {
+        'brand-background': 'hsl(var(--brand-background))',
+        'brand-primary': 'hsl(var(--brand-primary))',
+        'brand-secondary': 'hsl(var(--brand-secondary))',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

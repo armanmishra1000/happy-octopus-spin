@@ -72,7 +72,12 @@
 
     --sidebar-border: 220 13% 91%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --brand-background: 30 25% 96%; /* off-white */
+    --brand-primary: 0 63% 34%; /* maroon */
+    --brand-secondary: 28 47% 56%; /* ochre */
+  }
   .dark {
 
     --background: 0 0% 3.9%;
@@ -138,7 +143,12 @@
 
     --sidebar-border: 240 3.7% 15.9%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --brand-background: 240 5.9% 10%;
+    --brand-primary: 0 63% 40%;
+    --brand-secondary: 28 47% 60%;
+  }
 }
 
 
@@ -149,5 +159,8 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 }
