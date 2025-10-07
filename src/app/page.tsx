@@ -1,6 +1,7 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DecorativeStars } from "@/components/decorative-stars";
+import { CustomerFeedbackForm } from "@/components/customer-feedback-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -375,6 +376,8 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Customer Feedback Form Section */}
+        <CustomerFeedbackForm />
 
       </main>
       <Footer />
