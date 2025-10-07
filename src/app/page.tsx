@@ -1,7 +1,7 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { DecorativeStars } from "@/components/decorative-stars";
 import { CustomerFeedbackForm } from "@/components/customer-feedback-form";
+import { RealMomentsCarousel } from "@/components/real-moments-carousel";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -326,55 +326,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section className="section-padding bg-white">
-          <div className="container mx-auto px-4 lg:px-8">
-            <DecorativeStars />
-            <h2 className="text-center mb-12 text-gray-900">
-              We love hearing from you . . .
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Testimonial 1 */}
-              <div className="text-center">
-                <blockquote className="mb-6">
-                  <p className="text-xs text-gray-700 italic leading-relaxed mb-4">
-                    &ldquo;I&apos;d like to take this opportunity to say what amazing customer service you have. I will be recommending Askkart to friends and family and will certainly carry on purchasing from you.&rdquo;
-                  </p>
-                </blockquote>
-                <footer>
-                  <p className="text-xs font-semibold text-gray-900">RAJESH</p>
-                  <p className="text-xs text-gray-600">India</p>
-                </footer>
-              </div>
-
-              {/* Testimonial 2 */}
-              <div className="text-center">
-                <blockquote className="mb-6">
-                  <p className="text-xs text-gray-700 italic leading-relaxed mb-4">
-                    &ldquo;My order arrived in just two days. Askkart also has helpful sizing guidance, making it easy to find the perfect fit for my children.&rdquo;
-                  </p>
-                </blockquote>
-                <footer>
-                  <p className="text-xs font-semibold text-gray-900">PRIYA</p>
-                  <p className="text-xs text-gray-600">India</p>
-                </footer>
-              </div>
-
-              {/* Testimonial 3 */}
-              <div className="text-center">
-                <blockquote className="mb-6">
-                  <p className="text-xs text-gray-700 italic leading-relaxed mb-4">
-                    &ldquo;Hello from a happy customer. I ordered yesterday afternoon and they were delivered by 11.00am today. Gorgeous quality and beautifully packaged.&rdquo;
-                  </p>
-                </blockquote>
-                <footer>
-                  <p className="text-xs font-semibold text-gray-900">AMIT</p>
-                  <p className="text-xs text-gray-600">India</p>
-                </footer>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Real Moments Carousel */}
+        <RealMomentsCarousel />
 
         {/* Customer Feedback Form Section */}
         <CustomerFeedbackForm />
