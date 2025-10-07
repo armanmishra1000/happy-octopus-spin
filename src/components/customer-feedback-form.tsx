@@ -211,6 +211,8 @@ export function CustomerFeedbackForm() {
                   fill
                   className="object-cover"
                   priority
+                  quality={100}
+                  sizes="(max-width: 1024px) 0vw, 42vw"
                 />
               </div>
             </div>
