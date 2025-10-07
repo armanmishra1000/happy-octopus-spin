@@ -357,29 +357,33 @@ export default function Home() {
         </section>
 
         {/* Rewards Banner Section */}
-        <section className="section-padding bg-accent-blush">
+        <section className="section-padding bg-[#f5f0e8]">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Image */}
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg order-2 lg:order-1">
-                <Image
-                  src="/product.webp"
-                  alt="Askkart Rewards"
-                  fill
-                  className="object-cover"
-                />
-              </div>
               {/* Content */}
-              <div className="text-center lg:text-left order-1 lg:order-2">
-                <h2 className="mb-4 text-gray-900">A World of Askkart Rewards</h2>
-                <p className="text-sm text-gray-700 mb-6 leading-relaxed">
+              <div className="text-center lg:text-left order-1">
+                <h2 className="mb-4 text-gray-900 font-normal">A World of Askkart Rewards</h2>
+                <p className="text-sm text-gray-700 mb-8 leading-relaxed">
                   Collect Points as you shop and unlock a world of exclusive treats and exciting Rewards as you reach higher levels.
                 </p>
                 <Link href="/rewards">
-                  <Button variant="default" size="lg" className="bg-accent-navy hover:bg-accent-navy/90 text-white uppercase tracking-wider">
+                  <Button
+                    variant="default"
+                    size="lg"
+                    className="bg-[#b8956a] hover:bg-[#a67f54] text-white uppercase tracking-wider rounded-full px-8 py-6 text-sm font-medium"
+                  >
                     JOIN TODAY
                   </Button>
                 </Link>
+              </div>
+              {/* Image */}
+              <div className="relative aspect-[16/9] overflow-hidden order-2">
+                <Image
+                  src="/rewards.webp"
+                  alt="Askkart Rewards"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
