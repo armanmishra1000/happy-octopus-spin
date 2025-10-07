@@ -9,41 +9,41 @@
 
     --background: 0 0% 100%;
 
-    --foreground: 0 0% 3.9%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
 
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
 
-    --popover-foreground: 0 0% 3.9%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 0 0% 9%;
+    --primary: 217 24% 25%;
 
     --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 96.1%;
 
-    --secondary-foreground: 0 0% 9%;
+    --secondary-foreground: 0 0% 10%;
 
     --muted: 0 0% 96.1%;
 
-    --muted-foreground: 0 0% 45.1%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 0 0% 96.1%;
+    --accent: 217 24% 25%;
 
-    --accent-foreground: 0 0% 9%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 56% 57%;
 
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
+    --border: 0 0% 90%;
 
-    --input: 0 0% 89.8%;
+    --input: 0 0% 90%;
 
-    --ring: 0 0% 3.9%;
+    --ring: 217 24% 25%;
 
     --chart-1: 12 76% 61%;
 
@@ -55,7 +55,7 @@
 
     --chart-5: 27 87% 67%;
 
-    --radius: 0.5rem
+    --radius: 0.25rem
   ;
 
     --sidebar-background: 0 0% 98%;
@@ -73,28 +73,52 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
-    
-    --brand-background: 30 25% 96%; /* off-white */
-    --brand-primary: 0 63% 34%; /* maroon */
-    --brand-secondary: 28 47% 56%; /* ochre */
+
+    /* Childrensalon Exact Color Palette */
+    --brand-background: 0 0% 100%; /* pure white #FFFFFF */
+    --brand-primary: 0 0% 20%; /* dark gray #333333 */
+    --brand-secondary: 0 0% 40%; /* medium gray #666666 */
+
+    /* Primary Colors - Childrensalon Style */
+    --color-white: 0 0% 100%; /* #FFFFFF */
+    --color-black: 0 0% 0%; /* #000000 pure black for CTAs */
+    --color-text-primary: 0 0% 20%; /* #333333 main text */
+    --color-text-secondary: 0 0% 40%; /* #666666 secondary text */
+    --color-soft-gray: 0 0% 98%; /* #FAFAFA very subtle */
+    --color-medium-gray: 0 0% 40%; /* #666666 */
+    --color-light-gray: 0 0% 90%; /* #E5E5E5 */
+    --color-border-subtle: 0 0% 90%; /* #E5E5E5 */
+
+    /* Accent Colors - Minimal Use */
+    --color-accent-navy: 217 24% 31%; /* #2B3A52 - use sparingly */
+    --color-accent-sage: 120 12% 81%; /* #C8D5C2 */
+    --color-accent-blush: 15 43% 92%; /* #F4E6E2 */
+    --color-accent-mint: 172 24% 88%; /* #D4E9E7 */
+    --color-accent-warm: 28 26% 86%; /* #E8D9CF */
+
+    /* PRD Semantic Colors */
+    --color-success: 150 24% 39%; /* #4A7C59 */
+    --color-warning: 38 52% 65%; /* #D4A574 */
+    --color-error: 0 56% 57%; /* #C65D5D */
+    --color-info: 205 30% 58%; /* #6B9BC3 */
   }
   .dark {
 
-    --background: 0 0% 3.9%;
+    --background: 0 0% 10%;
 
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 3.9%;
+    --card: 0 0% 10%;
 
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 3.9%;
+    --popover: 0 0% 10%;
 
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 98%;
+    --primary: 217 24% 35%;
 
-    --primary-foreground: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 14.9%;
 
@@ -104,19 +128,19 @@
 
     --muted-foreground: 0 0% 63.9%;
 
-    --accent: 0 0% 14.9%;
+    --accent: 217 24% 35%;
 
     --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 40%;
 
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 14.9%;
+    --border: 0 0% 20%;
 
-    --input: 0 0% 14.9%;
+    --input: 0 0% 20%;
 
-    --ring: 0 0% 83.1%;
+    --ring: 217 24% 35%;
 
     --chart-1: 220 70% 50%;
 
@@ -145,9 +169,30 @@
 
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    --brand-background: 240 5.9% 10%;
-    --brand-primary: 0 63% 40%;
-    --brand-secondary: 28 47% 60%;
+    /* PRD Brand Colors - Dark mode adjusted */
+    --brand-background: 0 0% 10%;
+    --brand-primary: 217 24% 40%;
+    --brand-secondary: 120 12% 70%;
+
+    /* PRD Primary Colors - Dark mode */
+    --color-white: 0 0% 10%;
+    --color-black: 0 0% 98%;
+    --color-soft-gray: 0 0% 15%;
+    --color-medium-gray: 0 0% 60%;
+    --color-light-gray: 0 0% 25%;
+
+    /* PRD Accent Colors - Dark mode adjusted */
+    --color-accent-navy: 217 24% 40%;
+    --color-accent-sage: 120 12% 70%;
+    --color-accent-blush: 15 43% 80%;
+    --color-accent-mint: 172 24% 75%;
+    --color-accent-warm: 28 26% 75%;
+
+    /* PRD Semantic Colors - Dark mode adjusted */
+    --color-success: 150 24% 45%;
+    --color-warning: 38 52% 60%;
+    --color-error: 0 56% 50%;
+    --color-info: 205 30% 55%;
   }
 }
 
@@ -157,10 +202,101 @@
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-foreground;
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #333333;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+
+  /* Hero Headings - Cormorant Garamond */
+  h1 {
+    font-family: var(--font-cormorant), serif;
+    font-weight: 700;
+    letter-spacing: normal;
+  }
+
+  /* Section Headings - Poppins Bold */
+  h2 {
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: normal;
+  }
+
+  h3 {
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Reset default sizes */
+  p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+}
+
+/* PRD Utility Classes */
+@layer utilities {
+  /* Container max-widths from PRD */
+  .container-xs {
+    @apply max-w-screen-sm mx-auto px-4;
+  }
+
+  .container-sm {
+    @apply max-w-screen-md mx-auto px-4;
+  }
+
+  .container-md {
+    @apply max-w-screen-lg mx-auto px-4;
+  }
+
+  .container-lg {
+    @apply max-w-screen-xl mx-auto px-4;
+  }
+
+  .container-xl {
+    @apply max-w-[1440px] mx-auto px-4;
+  }
+
+  .container-2xl {
+    @apply max-w-[1600px] mx-auto px-4;
+  }
+
+  /* Section padding utilities - Premium/Luxury spacing */
+  .section-padding {
+    @apply py-16 px-4 md:py-24 md:px-8 lg:py-32 lg:px-12;
+  }
+
+  .section-padding-sm {
+    @apply py-12 px-4 md:py-16 md:px-6 lg:py-20 lg:px-8;
+  }
+
+  .section-padding-lg {
+    @apply py-20 px-4 md:py-32 md:px-8 lg:py-40 lg:px-12;
+  }
+
+  /* Hide scrollbar for horizontal scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
   }
 }
