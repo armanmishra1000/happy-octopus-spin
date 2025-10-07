@@ -164,12 +164,12 @@ export const Footer = () => {
               <span>
                 Powered by{" "}
                 <a
-                  href="https://getspace.co.in/"
+                  href="https://apexture.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-color-black transition-colors"
                 >
-                  Getspace
+                  Apexture
                 </a>
               </span>
             </div>
