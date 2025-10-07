@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const categories = [
-  { name: "NewBorn", href: "/category/newborn", description: "Best Choice for Your NewBorn" },
-  { name: "Girls", href: "/category/girls", description: "Shop Girl" },
-  { name: "Boys", href: "/category/boys", description: "Shop Boy" },
-  { name: "Toys", href: "/category/toys", description: "New Arrivals Toys" },
+  { name: "NewBorn", href: "/category/newborn", description: "Best Choice for Your NewBorn", image: "/newborn.webp" },
+  { name: "Girls", href: "/category/girls", description: "Shop Girl", image: "/girls.webp" },
+  { name: "Boys", href: "/category/boys", description: "Shop Boy", image: "/boy.webp" },
+  { name: "Toys", href: "/category/toys", description: "New Arrivals Toys", image: "/toys.webp" },
 ];
 
 const newArrivals = [
@@ -93,7 +93,7 @@ export default function Home() {
                   className="group relative overflow-hidden rounded-lg aspect-[3/4] block"
                 >
                   <Image
-                    src="/product.webp"
+                    src={category.image}
                     alt={category.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
