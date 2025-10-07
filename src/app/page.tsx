@@ -13,13 +13,6 @@ const categories = [
   { name: "Toys", href: "/category/toys", description: "New Arrivals Toys", image: "/toys.webp" },
 ];
 
-const newArrivals = [
-  { name: "Stylish Three Piece Suit for Boys", category: "Boys Clothing", price: "₹1,895", href: "/product/1" },
-  { name: "Stylish 3-Piece Boys Suit Set", category: "Boys Clothing", price: "₹2,045", href: "/product/2" },
-  { name: "Boys Stylish Waistcoat Bow Tie Party Wear Set", category: "Boys Clothing", price: "₹2,195", href: "/product/3" },
-  { name: "Boys Casual Jacket Set", category: "Boys Clothing", price: "₹1,895", href: "/product/4" },
-];
-
 const bestSellers = [
   { name: "Soft Plush Multicolor Ball for Kids", category: "Toys", price: "₹395", href: "/product/5", isBestSeller: true },
   { name: "Classic Yellow Pooh Plush Toy", category: "Toys", price: "₹395", href: "/product/6", isBestSeller: true },
@@ -109,53 +102,6 @@ export default function Home() {
                   </div>
                 </Link>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Promotional Banner */}
-        <section className="bg-[#8B1538] py-8">
-          <div className="container mx-auto px-4 lg:px-8">
-            <Link href="/new-arrivals" className="block text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-white">
-                Their new favourite outfit awaits . . .
-              </h2>
-            </Link>
-          </div>
-        </section>
-
-        {/* New Arrivals Section */}
-        <section className="section-padding bg-white overflow-hidden">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="mb-3 text-gray-900">New Arrivals</h2>
-              <p className="text-xs text-gray-600">Their new favourite outfit awaits...</p>
-            </div>
-            {/* Horizontal Scroller */}
-            <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
-              <div className="flex gap-6 lg:gap-8 pb-4" style={{ minWidth: 'min-content' }}>
-                {newArrivals.map((product) => (
-                  <Link
-                    key={product.name}
-                    href={product.href}
-                    className="group flex-shrink-0 w-[280px] sm:w-[300px] overflow-hidden transition-all duration-300"
-                  >
-                    <div className="relative aspect-[3/4] bg-white overflow-hidden mb-4">
-                      <Image
-                        src="/product.webp"
-                        alt={product.name}
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-500 p-4"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-normal uppercase tracking-wider text-gray-500">{product.category}</p>
-                      <h3 className="text-xs font-normal line-clamp-2 text-gray-900">{product.name}</h3>
-                      <p className="text-xs font-medium text-gray-900">{product.price}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
             </div>
           </div>
         </section>
@@ -289,39 +235,6 @@ export default function Home() {
                   </div>
                 </Link>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Rewards Banner Section */}
-        <section className="section-padding bg-[#f5f0e8]">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Content */}
-              <div className="text-center lg:text-left order-1">
-                <h2 className="mb-4 text-gray-900 font-normal">A World of Askkart Rewards</h2>
-                <p className="text-sm text-gray-700 mb-8 leading-relaxed">
-                  Collect Points as you shop and unlock a world of exclusive treats and exciting Rewards as you reach higher levels.
-                </p>
-                <Link href="/rewards">
-                  <Button
-                    variant="default"
-                    size="lg"
-                    className="bg-[#b8956a] hover:bg-[#a67f54] text-white uppercase tracking-wider rounded-full px-8 py-6 text-sm font-medium"
-                  >
-                    JOIN TODAY
-                  </Button>
-                </Link>
-              </div>
-              {/* Image */}
-              <div className="relative aspect-[16/9] overflow-hidden order-2">
-                <Image
-                  src="/rewards.webp"
-                  alt="Askkart Rewards"
-                  fill
-                  className="object-contain"
-                />
-              </div>
             </div>
           </div>
         </section>
