@@ -7,25 +7,25 @@ const products = [
   {
     id: 1,
     name: "Elegant Princess Birthday Dress",
-    image: "/dress-1.webp",
+    image: "/dress1.webp",
     href: "/product/elegant-princess-dress"
   },
   {
     id: 2,
     name: "Floral Garden Party Dress",
-    image: "/dress-2.webp",
+    image: "/dress2.webp",
     href: "/product/floral-garden-dress"
   },
   {
     id: 3,
     name: "Classic Celebration Dress",
-    image: "/dress-3.webp",
+    image: "/dress3.webp",
     href: "/product/classic-celebration-dress"
   },
   {
     id: 4,
     name: "Sweet Dreams Occasion Dress",
-    image: "/dress-4.webp",
+    image: "/dress4.webp",
     href: "/product/sweet-dreams-dress"
   }
 ];
