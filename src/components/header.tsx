@@ -3,12 +3,41 @@
 import { Search, ShoppingCart, User, Menu, Heart, X, Phone, Globe, Gift } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { MobileSearchOverlay } from "./mobile-search-overlay";
 
 export const Header = () => {
   const [cartCount] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [openMegaMenu, setOpenMegaMenu] = useState<string | null>(null);
+  const [megaMenuTimer, setMegaMenuTimer] = useState<NodeJS.Timeout | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // Mega menu hover delay to prevent flickering
+  const handleMegaMenuEnter = (categoryName: string) => {
+    if (megaMenuTimer) clearTimeout(megaMenuTimer);
+    const timer = setTimeout(() => setOpenMegaMenu(categoryName), 150);
+    setMegaMenuTimer(timer);
+  };
+
+  const handleMegaMenuLeave = () => {
+    if (megaMenuTimer) clearTimeout(megaMenuTimer);
+    const timer = setTimeout(() => setOpenMegaMenu(null), 150);
+    setMegaMenuTimer(timer);
+  };
 
   const categories = [
     {
@@ -70,8 +99,17 @@ export const Header = () => {
   ];
 
   return (
-    <header className="bg-white sticky top-0 z-50 shadow-sm">
-      {/* Top Utility Bar */}
+    <>
+      <header ref={headerRef} className="bg-white sticky top-0 z-50 shadow-sm">
+        {/* Skip to main content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#b8956a] focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#b8956a]"
+        >
+          Skip to main content
+        </a>
+
+        {/* Top Utility Bar */}
       <div className="bg-[#f9f7f4] border-b border-gray-200">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between py-2 text-xs">
@@ -131,8 +169,9 @@ export const Header = () => {
             <div className="flex items-center gap-4 lg:gap-5">
               {/* Search (Mobile Only) */}
               <button
-                className="lg:hidden text-gray-700 hover:text-gray-900 transition-colors"
-                aria-label="Search"
+                onClick={() => setIsMobileSearchOpen(true)}
+                className="lg:hidden text-gray-700 hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-[#b8956a] focus:ring-offset-2 rounded-full p-1"
+                aria-label="Open search"
               >
                 <Search className="h-5 w-5" />
               </button>
@@ -186,36 +225,36 @@ export const Header = () => {
       </div>
 
       {/* Primary Navigation Bar (Desktop) */}
-      <nav className="hidden lg:block bg-white border-b border-gray-100">
+      <nav className="hidden lg:block bg-white border-b border-gray-200" aria-label="Main navigation">
         <div className="container mx-auto px-4 lg:px-8">
           <ul className="flex items-center justify-center gap-10 py-4">
             {categories.map((category) => (
               <li
                 key={category.name}
                 className="relative"
-                onMouseEnter={() => category.subcategories && setOpenMegaMenu(category.name)}
-                onMouseLeave={() => setOpenMegaMenu(null)}
+                onMouseEnter={() => category.subcategories && handleMegaMenuEnter(category.name)}
+                onMouseLeave={handleMegaMenuLeave}
               >
                 <Link
                   href={category.href}
-                  className={`text-xs uppercase tracking-wider font-medium transition-colors hover:text-[#b8956a] relative group ${
+                  className={`text-xs uppercase tracking-wider font-medium transition-colors hover:text-[#b8956a] relative group focus:outline-none focus:ring-2 focus:ring-[#b8956a] focus:ring-offset-4 rounded-sm px-2 py-1 ${
                     category.isHighlight ? 'text-red-600' : 'text-gray-900'
                   }`}
                 >
                   {category.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#b8956a] group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#b8956a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </Link>
 
                 {/* Mega Menu Dropdown */}
                 {category.subcategories && openMegaMenu === category.name && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-screen max-w-xs">
-                    <div className="bg-white rounded-lg shadow-xl border border-gray-200 p-6">
-                      <div className="space-y-2">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-10">
+                    <div className="bg-white rounded-lg shadow-xl border border-gray-200 p-6 w-72 max-w-[90vw]">
+                      <div className="space-y-1">
                         {category.subcategories.map((sub) => (
                           <Link
                             key={sub.name}
                             href={sub.href}
-                            className="block text-sm text-gray-700 hover:text-[#b8956a] hover:translate-x-1 transition-all py-2 border-b border-gray-100 last:border-0"
+                            className="block text-sm text-gray-700 hover:text-[#b8956a] hover:translate-x-1 transition-all py-2.5 px-3 rounded-md hover:bg-gray-50 border-b border-gray-100 last:border-0 focus:outline-none focus:ring-2 focus:ring-[#b8956a] focus:bg-gray-50"
                           >
                             {sub.name}
                           </Link>
@@ -230,72 +269,100 @@ export const Header = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu with Backdrop */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200">
-          <div className="container mx-auto px-4 py-6">
-            {/* Mobile Search */}
-            <div className="mb-6">
-              <div className="relative">
-                <input
-                  type="search"
-                  placeholder="Search products..."
-                  className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#b8956a]"
-                />
-                <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden animate-fade-in"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Mobile Menu Panel */}
+          <div className="fixed inset-y-0 left-0 w-full max-w-sm bg-white z-50 lg:hidden shadow-2xl overflow-y-auto animate-slide-in-left">
+            <div className="p-6">
+              {/* Mobile Menu Header */}
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-900">Menu</h2>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#b8956a]"
+                  aria-label="Close menu"
+                >
+                  <X className="h-5 w-5 text-gray-600" />
+                </button>
+              </div>
+
+              {/* Mobile Navigation */}
+              <nav className="space-y-1 mb-6">
+                {categories.map((category) => (
+                  <div key={category.name} className="border-b border-gray-100 last:border-0">
+                    <Link
+                      href={category.href}
+                      className={`block text-sm font-medium py-3 px-3 rounded-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#b8956a] ${
+                        category.isHighlight ? 'text-red-600' : 'text-gray-900'
+                      }`}
+                    >
+                      {category.name}
+                    </Link>
+                    {category.subcategories && (
+                      <ul className="ml-4 mb-3 space-y-1">
+                        {category.subcategories.map((sub) => (
+                          <li key={sub.name}>
+                            <Link
+                              href={sub.href}
+                              className="block text-xs text-gray-600 py-2 px-3 rounded-md hover:bg-gray-50 hover:text-[#b8956a] transition-colors focus:outline-none focus:ring-2 focus:ring-[#b8956a]"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {sub.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </nav>
+
+              {/* Mobile Utility Links */}
+              <div className="pt-6 border-t border-gray-200 space-y-2">
+                <Link
+                  href="/account"
+                  className="flex items-center gap-3 text-sm text-gray-700 py-2.5 px-3 rounded-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#b8956a]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <User className="h-4 w-4" />
+                  My Account
+                </Link>
+                <Link
+                  href="/wishlist"
+                  className="flex items-center gap-3 text-sm text-gray-700 py-2.5 px-3 rounded-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#b8956a]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Heart className="h-4 w-4" />
+                  Wishlist
+                </Link>
+                <Link
+                  href="/rewards"
+                  className="flex items-center gap-3 text-sm text-gray-700 py-2.5 px-3 rounded-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#b8956a]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Gift className="h-4 w-4" />
+                  Rewards
+                </Link>
               </div>
             </div>
-
-            {/* Mobile Navigation */}
-            <ul className="space-y-4">
-              {categories.map((category) => (
-                <li key={category.name}>
-                  <Link
-                    href={category.href}
-                    className={`block text-sm font-medium py-2 ${
-                      category.isHighlight ? 'text-red-600' : 'text-gray-900'
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {category.name}
-                  </Link>
-                  {category.subcategories && (
-                    <ul className="ml-4 mt-2 space-y-2">
-                      {category.subcategories.map((sub) => (
-                        <li key={sub.name}>
-                          <Link
-                            href={sub.href}
-                            className="block text-xs text-gray-600 py-1.5"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            {sub.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-
-            {/* Mobile Utility Links */}
-            <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
-              <Link href="/account" className="flex items-center gap-2 text-sm text-gray-700">
-                <User className="h-4 w-4" />
-                My Account
-              </Link>
-              <Link href="/wishlist" className="flex items-center gap-2 text-sm text-gray-700">
-                <Heart className="h-4 w-4" />
-                Wishlist
-              </Link>
-              <Link href="/rewards" className="flex items-center gap-2 text-sm text-gray-700">
-                <Gift className="h-4 w-4" />
-                Rewards
-              </Link>
-            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
+
+    {/* Mobile Search Overlay */}
+    <MobileSearchOverlay
+      isOpen={isMobileSearchOpen}
+      onClose={() => setIsMobileSearchOpen(false)}
+    />
+  </>
   );
 };

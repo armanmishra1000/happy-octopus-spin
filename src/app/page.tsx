@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {/* Top Promotional Banner */}
         <section className="bg-accent-navy text-white">
           <Link href="/rewards" className="block">
@@ -73,7 +73,7 @@ export default function Home() {
             <h2 className="text-center mb-12 text-gray-900">
               Shop by Category
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
               {categories.map((category) => (
                 <Link
                   href={category.href}

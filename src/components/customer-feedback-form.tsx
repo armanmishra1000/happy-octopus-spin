@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import { Star, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 export function CustomerFeedbackForm() {
   const [name, setName] = useState("");
@@ -12,17 +12,46 @@ export function CustomerFeedbackForm() {
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log({ name, email, country, rating, comment });
-    // Reset form
-    setName("");
-    setEmail("");
-    setCountry("");
-    setRating(0);
-    setComment("");
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setErrorMessage("");
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // In production, replace with actual API call:
+      // const response = await fetch('/api/feedback', {
+      //   method: 'POST',
+      //   body: JSON.stringify({ name, email, country, rating, comment }),
+      // });
+      // if (!response.ok) throw new Error('Failed to submit');
+
+      console.log({ name, email, country, rating, comment });
+
+      // Success
+      setSubmitStatus("success");
+      // Reset form after 2 seconds
+      setTimeout(() => {
+        setName("");
+        setEmail("");
+        setCountry("");
+        setRating(0);
+        setComment("");
+        setSubmitStatus("idle");
+      }, 2000);
+    } catch {
+      setSubmitStatus("error");
+      setErrorMessage("Failed to submit feedback. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const countries = [
@@ -169,12 +198,41 @@ export function CustomerFeedbackForm() {
                   />
                 </div>
 
+                {/* Success Message */}
+                {submitStatus === "success" && (
+                  <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-md text-green-800 text-sm">
+                    <CheckCircle className="h-5 w-5 flex-shrink-0" />
+                    <span className="font-medium">Thank you! Your feedback has been submitted successfully.</span>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submitStatus === "error" && (
+                  <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-md text-red-800 text-sm">
+                    <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                    <span className="font-medium">{errorMessage}</span>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full bg-[#b8956a] hover:bg-[#a67f54] text-white font-medium py-2.5"
+                  disabled={isSubmitting || submitStatus === "success"}
+                  className="w-full bg-[#b8956a] hover:bg-[#a67f54] text-white font-medium py-2.5 disabled:opacity-60 disabled:cursor-not-allowed transition-all"
                 >
-                  Add Review
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      Submitting...
+                    </>
+                  ) : submitStatus === "success" ? (
+                    <>
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Submitted!
+                    </>
+                  ) : (
+                    "Add Review"
+                  )}
                 </Button>
 
                 {/* reCAPTCHA Notice */}
@@ -182,7 +240,7 @@ export function CustomerFeedbackForm() {
                   Protected by reCAPTCHA and the Google{" "}
                   <a
                     href="https://policies.google.com/privacy"
-                    className="underline hover:text-gray-700"
+                    className="underline hover:text-gray-700 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -191,7 +249,7 @@ export function CustomerFeedbackForm() {
                   and{" "}
                   <a
                     href="https://policies.google.com/terms"
-                    className="underline hover:text-gray-700"
+                    className="underline hover:text-gray-700 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

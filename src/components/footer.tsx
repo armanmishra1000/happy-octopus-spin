@@ -1,25 +1,45 @@
 "use client";
 
-import { Facebook, Instagram, Mail, Phone, Smartphone, Globe, Shield, CreditCard } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, Smartphone, Globe, Shield, CreditCard, Loader2, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 
 export const Footer = () => {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter subscription
-    console.log("Newsletter subscription:", email);
-    setEmail("");
+    setIsSubmitting(true);
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // In production, replace with actual API call
+      console.log("Newsletter subscription:", email);
+
+      setSubmitSuccess(true);
+      setEmail("");
+
+      // Reset success message after 3 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Newsletter subscription failed:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <footer className="bg-[#f9f7f4] border-t border-gray-200">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 md:gap-8">
 
           {/* Column 1: Brand & Newsletter (25%) */}
           <div className="lg:col-span-1">
@@ -50,15 +70,29 @@ export const Footer = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email address"
-                    className="w-full pl-10 pr-3 py-2.5 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b8956a] focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-3 py-2.5 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b8956a] focus:border-transparent transition-all disabled:opacity-60"
                     required
+                    disabled={isSubmitting || submitSuccess}
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-4 py-2.5 bg-[#b8956a] text-white text-xs font-medium rounded-md hover:bg-[#a67f54] transition-colors"
+                  disabled={isSubmitting || submitSuccess}
+                  className="w-full px-4 py-2.5 bg-[#b8956a] text-white text-xs font-medium rounded-md hover:bg-[#a67f54] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  Subscribe
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      <span>Subscribing...</span>
+                    </>
+                  ) : submitSuccess ? (
+                    <>
+                      <CheckCircle className="h-3.5 w-3.5" />
+                      <span>Subscribed!</span>
+                    </>
+                  ) : (
+                    "Subscribe"
+                  )}
                 </button>
               </div>
             </form>
@@ -233,53 +267,59 @@ export const Footer = () => {
             <div>
               <p className="text-[11px] text-gray-600 mb-2">Download Our App</p>
               <div className="flex flex-col gap-2">
-                <Link href="#" className="flex items-center gap-2 px-3 py-2 bg-gray-900 text-white rounded-md text-[10px] hover:bg-gray-800 transition-colors">
+                <div className="relative flex items-center gap-2 px-3 py-2 bg-gray-900 text-white rounded-md text-[10px] opacity-60 cursor-not-allowed">
                   <Smartphone className="h-4 w-4" />
                   <div>
                     <div className="text-[8px] opacity-75">Download on the</div>
                     <div className="font-semibold">App Store</div>
                   </div>
-                </Link>
-                <Link href="#" className="flex items-center gap-2 px-3 py-2 bg-gray-900 text-white rounded-md text-[10px] hover:bg-gray-800 transition-colors">
+                  <span className="absolute -top-2 -right-2 bg-[#b8956a] text-white text-[8px] px-2 py-0.5 rounded-full font-medium">
+                    Soon
+                  </span>
+                </div>
+                <div className="relative flex items-center gap-2 px-3 py-2 bg-gray-900 text-white rounded-md text-[10px] opacity-60 cursor-not-allowed">
                   <Smartphone className="h-4 w-4" />
                   <div>
                     <div className="text-[8px] opacity-75">GET IT ON</div>
                     <div className="font-semibold">Google Play</div>
                   </div>
-                </Link>
+                  <span className="absolute -top-2 -right-2 bg-[#b8956a] text-white text-[8px] px-2 py-0.5 rounded-full font-medium">
+                    Soon
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Trust Badges & Payment Icons */}
-        <div className="mt-12 pt-8 border-t border-gray-300">
+        <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             {/* Left: Trust Badges */}
-            <div className="flex items-center gap-6 flex-wrap justify-center lg:justify-start">
-              <div className="flex items-center gap-2 text-xs text-gray-600">
-                <Shield className="h-4 w-4 text-green-600" />
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 flex-wrap justify-center lg:justify-start w-full lg:w-auto">
+              <div className="flex items-center gap-2 text-xs text-gray-600 whitespace-nowrap">
+                <Shield className="h-4 w-4 text-green-600 flex-shrink-0" />
                 <span>SSL Secure</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-gray-600">
-                <CreditCard className="h-4 w-4 text-blue-600" />
+              <div className="flex items-center gap-2 text-xs text-gray-600 whitespace-nowrap">
+                <CreditCard className="h-4 w-4 text-blue-600 flex-shrink-0" />
                 <span>Safe Payments</span>
               </div>
-              <div className="text-xs text-gray-600">
+              <div className="text-xs text-gray-600 whitespace-nowrap">
                 ⭐ <span className="font-medium">4.8/5</span> by 2,500+ customers
               </div>
             </div>
 
             {/* Right: Payment Methods */}
-            <div className="flex items-center gap-3 flex-wrap justify-center">
-              <span className="text-[11px] text-gray-600 font-medium">We Accept:</span>
-              <div className="flex items-center gap-2">
-                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700">VISA</div>
-                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700">MC</div>
-                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700">AMEX</div>
-                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700">PayPal</div>
-                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700">UPI</div>
-                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700">Paytm</div>
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+              <span className="text-[11px] text-gray-600 font-medium whitespace-nowrap">We Accept:</span>
+              <div className="flex items-center gap-2 flex-wrap justify-center">
+                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700 whitespace-nowrap">VISA</div>
+                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700 whitespace-nowrap">MC</div>
+                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700 whitespace-nowrap">AMEX</div>
+                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700 whitespace-nowrap">PayPal</div>
+                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700 whitespace-nowrap">UPI</div>
+                <div className="px-2 py-1 bg-white rounded border border-gray-200 text-[10px] font-semibold text-gray-700 whitespace-nowrap">Paytm</div>
               </div>
             </div>
           </div>
