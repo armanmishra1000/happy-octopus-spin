@@ -2,6 +2,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CustomerFeedbackForm } from "@/components/customer-feedback-form";
 import { RealMomentsCarousel } from "@/components/real-moments-carousel";
+import { TrendingProducts } from "@/components/trending-products";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -98,6 +99,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Trending Products Section */}
+        <TrendingProducts />
 
         {/* Real Moments Carousel */}
         <RealMomentsCarousel />
